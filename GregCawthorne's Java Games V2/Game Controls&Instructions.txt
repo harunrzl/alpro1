@@ -1,0 +1,111 @@
+Greg Cawthorne's Games & controls/instructions guide!
+-----------------------------------------------------
+
+Note: If any games stops responding, close and reopen it! Sometimes clicking off the game window will cause the game to become unresponsive.
+
+-------------------------------------------------------------------------------------------
+Tron:
+-----
+
+W - Red up
+A - Red left
+S = Red down
+D = red right
+
+UP Arrow - green up
+LEFT Arrow - green left
+DOWN Arrow = green down
+RIGHT arrow = green right
+
+Aim:
+2 players control a coloured line and they have to see how long they can last before they crash ito them selves or the other player. The person who crashes is the loser!
+
+-------------------------------------------------------------------------------------------
+
+Othello/Reversi
+---------------
+
+Left Click - place tile
+
+Aim:
+Othello AKA Reversi is a turn based game, one opponent has a certain colour tile and the other opponent has the other colour tile. The aim is to have the most tiles of YOUR colour on the board at the end of the game. The game ends when person who's current turn it is cannot go.
+You must flip at least one of your opponent's tiles every go and you flip them by placing a tile down so that you have two tiles in the same line (up/right/left/down/diagonlly) that enclose some of your opponents tiles. e.g. XOOOOX would go to XXXXXX and OXO would go to OOO.
+
+Note: The jar file must be run from the 'Othello' folder, otherwise the game will not be able to find the pictures for the tiles. The 1-Player.AI version allows you to play against the PC!
+
+MineSweeper:
+------------
+
+Right Click:
+Flag/Unflag Mine - Mines cannot be left clicked while flagged.
+
+Left Click:
+Check Mine position.
+
+Aim:
+Click to 'dig' up a position. Try and deduce the position of all of the mines, by clearing the non-mine positons and using the numbers as clues, leaving just the mines. The number on a position represents how many mines are surrounding said position. Click a mine and the game is over. See how fast you can clear all of the mines! - ine positons are randomly generated each go.
+
+-------------------------------------------------------------------------------------------
+
+Tetris:
+-------
+
+Up arrow key:
+Rotate current piece 90 degrees.
+
+Left arrow key:
+Move current piece LEFT.
+
+Right arrow key:
+Move current piece RIGHT.
+
+Down arrow key:
+Move current piece DOWN.
+
+Aim:
+To create full horizontal lines of blocks by slotting in the randomly generated pieces. Once a full ine is made they will disappear and above blocks will fall down accordingly. You die when the block reach the top of the screen.
+
+-------------------------------------------------------------------------------------------
+
+Laser Gem:
+----------
+
+Space Bar:
+Fire blocks.
+
+Arrow Keys:
+Move Spaceship.
+
+Enter:
+Launch WMD (Weapon of Mass Destruction), which clears all of the block on the screen. (Energy bar on the right hand side must be all green).
+
+Overview:
+Get blocks of the same colour touching side by side. Once you have done this enough times the red bar will become all green. Then you can press enter to clear the screen
+
+TIP: Don't try to clear the whole screen with the space bar alone. Try to get WMD to clear the screen!
+
+Aim:
+The colour of the next block to be fired is shown by th very left vertical bar (very next block represented by the bottom colour). Fire your blocks at the approaching blocks and if you manage to get 4 blocks of the same colour touching each other side by side they will disappear and you will gain a point AND some energy being added for the WMD (represented by the amount of green increasing on the red vertical bar on the right). The WMD clears all of the blocks.
+Your health is the green and red horizontal bar 3 rows from the bottom (you get hurt by moving into the approaching blocks), if you run out of halth the game is over.
+The temperature of your gun is the blue bar on the bottom which gets filled with yellwo as you fire.
+The rate at which the randomly generated blocks are generated increases with time. See how long you can last!
+
+-------------------------------------------------------------------------------------------
+
+Stacker:
+--------
+
+Space Bar:
+Stops current block moving and Starts/generates the next row's block.
+
+Aim:
+You start off at the bottom row with a 5 long line of blocks moving back and forth along the screen. Press space to pause it and generate the next rows line. Repeat this until you get to the top. However you need stop your current row's line of blocks directly above the previous row's line of blocks. otherwise your line of blocks will be reduced in length on the next row. Then game is over when you run out of line length. The speed of the line increases as you go up the screen.
+
+-------------------------------------------------------------------------------------------
+
+Pretty Window:
+--------------
+
+There are no controls! - Just run and watch! (no suitable for people who suffer from epilepsy).
+
+-------------------------------------------------------------------------------------------

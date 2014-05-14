@@ -1,0 +1,231 @@
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+@SuppressWarnings("serial")
+public class o extends JFrame implements ActionListener{
+	boolean ai = false;
+	static boolean notvalid = false;
+	static int distance[] = new int[8];
+	static int[] directionx = {1,-1,0,1,-1,1,-1,0};
+	static int[] directiony = {1,1,1,0,0,-1,-1,-1};
+	ImageIcon green = new ImageIcon("green.jpg"); 
+	ImageIcon red = new ImageIcon("red.png"); 
+       boolean found = false;
+       int opp = 2;
+       int turn = 1;
+       JButton b[][];
+       int[][] grid = new int[10][10];
+       int n = 8;
+       int m = 8;
+       public o(){
+    	   for (int x = 0;x<10;x++){
+    		   grid[x][0] = 3;
+    		   grid[x][9] = 3;
+    		   grid[0][x] = 3;
+    		   grid[9][x] = 3;
+    	   }
+       this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+               b = new JButton [n][m];
+               setLayout(new GridLayout(n,m));
+               for (int y = 0;y<m;y++){
+                       for (int x = 0;x<n;x++){
+                               b[x][y] = new JButton(" ");
+                               b[x][y].addActionListener(this);
+                               add(b[x][y]);
+                               b[x][y].setEnabled(true);
+                       }//end inner for
+               }//end for
+               pack();
+               setVisible(true);
+               start();
+       }//end constructor Mine()
+       
+       public void start(){
+    	   grid[4][4] = 1;
+    	   b[3][3].setIcon(red);
+    	   grid[4][5] = 2;
+    	   b[3][4].setIcon(green);
+    	   grid[5][4] = 2;
+    	   b[4][3].setIcon(green);
+    	   grid[5][5] = 1;
+    	   b[4][4].setIcon(red);
+    	   do{
+    		   if (ai == true){
+    		   int x = (int) ((Math.floor(Math.random()*8+1))-1);
+    		   int y = (int) ((Math.floor(Math.random()*8+1))-1);
+    		   run(x,y);
+    		   }
+    	   }while(true);
+       }
+       
+       public void run(int H, int V){
+       	   Component temporaryLostComponent = null;
+    	   int redc = 0;
+    	   int greenc = 0;
+    	   notvalid = false;
+    	   for (int x = 0;x<8;x++){
+    		   distance[x] = 0;
+    	   }
+    	   go(H,V);
+           match(H,V);
+           if(notvalid == false){
+           if (turn == 1){
+        	   ai = true;
+           	turn = 2;
+               opp = 1;
+           } else if(turn == 2){
+        	   try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	   ai = false;
+           	turn = 1;
+           	opp = 2;
+           }
+           }
+           notvalid = false;
+    	   if (checkend() == true){
+   	   for (int y = 0;y<8;y++){
+   	   for (int x = 0;x<8;x++){
+   		   if (grid[x+1][y+1] == 1){
+   			   redc++;
+   		   } else if (grid[x+1][y+1] == 2){
+   			   greenc++;
+   		   }
+   	   }}
+   		   if (greenc>redc){
+              JOptionPane.showMessageDialog(temporaryLostComponent, "Game over! The PC wins!");
+   		   } else if (greenc<redc){
+   			   JOptionPane.showMessageDialog(temporaryLostComponent, "Game over! You win!");
+   		   } else {
+   			   JOptionPane.showMessageDialog(temporaryLostComponent, "Game over! Both players drew!");
+   		   }
+              System.exit(0);
+   	   }
+       }
+
+       public void actionPerformed(ActionEvent e){
+           int V = 0;
+           int H = 0;
+    	   found =  false;
+               JButton current = (JButton)e.getSource();
+               for (int y = 0;y<m;y++){
+                       for (int x = 0;x<n;x++){
+                               JButton t = b[x][y];
+                               if(t == current){
+                                       H=x;V=y; found =true;
+                               }
+                       }//end inner for
+               }//end for
+               if(!found) {
+                       System.out.println("didn't find the button, there was an error "); System.exit(-1);
+               }
+            run(H,V);
+       }
+       
+       public boolean checkend(){
+    	   int count = 0;
+    	   for (int y = 0;y<8;y++){
+    		   for (int x = 0;x<8;x++){
+    			   if (checkvalidity(x,y) == false){
+    				   count++;
+    			   }
+    		   }
+    	   }
+    	   if (count == 64) {
+    		   return true;
+    	   } else {
+    		   return false;
+    	   }
+       }
+       
+       public boolean checkvalidity(int x,int y){
+    	   boolean cycle = true;
+		   int I = 1;
+    	   if (grid[x+1][y+1] == 0){
+    		   for (int c = 0;c<8;c++){
+    			   cycle = true;
+    			   I = 1;
+    			   do{
+    			   if ((grid[x+1+(directionx[c]*I)][y+1+(directiony[c]*I)] == turn) && (I == 1)){
+    				   cycle = false;  
+        		   } else if ((grid[x+1+(directionx[c]*I)][y+1+(directiony[c]*I)] == turn) && (I > 1)){
+    				   return true;
+    			   } else if ((grid[x+1+(directionx[c]*I)][y+1+(directiony[c]*I)] == 3) || (grid[x+1+(directionx[c]*I)][y+1+(directiony[c]*I)] == 0)){
+    				   cycle = false;
+    			   }
+    			   I++;
+    			   }while(cycle == true);
+    	   }
+       }
+    	   return false;
+       }
+       
+       public void go(int x, int y){
+    	   boolean cycle = true;
+		   int I = 1;
+    	   if (grid[x+1][y+1] == 0){
+    		   for (int c = 0;c<8;c++){
+    			   cycle = true;
+    			   I = 1;
+    			   do{
+    			   if ((grid[x+1+(directionx[c]*I)][y+1+(directiony[c]*I)] == opp)){
+    				   distance[c]++;
+    			   } else if (grid[x+1+(directionx[c]*I)][y+1+(directiony[c]*I)] == turn){
+    				   cycle = false;
+    			   } else if ((grid[x+1+(directionx[c]*I)][y+1+(directiony[c]*I)] == 3) || (grid[x+1+(directionx[c]*I)][y+1+(directiony[c]*I)] == 0)){
+    				   cycle = false;
+    				   distance[c] = 0;
+    			   }
+    			   I++;
+    			   }while(cycle == true);
+    	   }
+       }
+       }
+       
+       public void match(int x, int y){
+    	   int count = 0;
+		   for(int z = 0;z<8;z++){
+			   if (distance[z] != 0){
+				   count++;
+			   }
+		   }
+		   if (count != 0){
+			   grid[x+1][y+1] = turn;
+		   } else {
+			   notvalid = true;
+		   }
+    	   for (int a = 0;a<8;a++){
+    		   for (int b = 1;b<distance[a]+1;b++){
+    			   grid[x+1+(directionx[a]*b)][y+1+(directiony[a]*b)] = turn;
+    		   }
+    	   }
+    	   for (int y2 = 0;y2<8;y2++){
+    		   for (int x2 = 0;x2<8;x2++){
+    			   if (grid[x2+1][y2+1] == 2){
+    			   b[x2][y2].setIcon(green);
+    			   }
+    			   if (grid[x2+1][y2+1] == 1){
+        			   b[x2][y2].setIcon(red);
+        			   }
+    		   }
+    	   }
+       }
+
+       public void windowIconified(WindowEvent e){
+
+       }
+
+       public static void main(String[] args){
+               new o();
+       }
+
+
+		public void mouseClicked(MouseEvent e) { 
+		
+	}
+
+}//end class

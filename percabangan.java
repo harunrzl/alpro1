@@ -1,0 +1,57 @@
+/*
+	== Oct 16 ==
+	Keep
+	It
+	Simple
+	Stupid!
+ 
+	PhD = Philosophy Doctor;
+
+	Bikin flow chart dulu, lalu scriptnya.
+	1. Faster
+	2. Easier
+	3. Reliable
+	4. 
+
+	Divide and solve the problem easier.
+*/
+
+import java.util.Scanner;
+
+class percabangan {
+	public static void FPB (Int args[]) {
+		while (i>1) {
+			if(n%i==0 && m%i==0) break;
+			i--;
+		}
+
+		System.out.println("FPB nya adalah " +i);
+	}
+
+	public static void main (String args[]) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Masukkan angka pertama : ");
+		long a = sc.nextLong();
+		System.out.print("Masukkan angka kedua : ");
+		long b = sc.nextLong();
+
+
+		long m = Math.max(a,b);
+		long n = Math.min(a,b);
+		long i = n;
+
+		while (i>1) {
+			if(n%i==0 && m%i==0) break;
+			i--;
+		}
+
+		System.out.println("FPB nya adalah " +i);
+
+		//String nilai;
+/*		else if(a==9) nilai = "AB";
+		else nilai = "E";
+		System.out.println("Nilai dari variable a = " +nilai);
+*/
+	}
+
+}

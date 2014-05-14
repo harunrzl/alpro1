@@ -1,0 +1,41 @@
+public class SquareData {
+
+	private byte data[][]; // read-only
+	private byte steps; // sdh berapa kali user melangkah
+
+	public SquareData() { data = new byte[10][10]; steps = 0; }
+
+	public byte[][] getData() { return(data); }
+	public byte getSteps() { return(steps); }
+
+	public void initData() {
+		for(int i=0; i<=10; i++) {
+			for(int j=0; j<=10; j++) {
+				data[i][j] = (byte) Math.floor;
+			}
+		}
+		steps = 0;
+	}
+
+	public byte getPivot() { return(data[0][0]; }
+	public void changeColor(byte b) {
+		byte old = getPivot();
+		replace(0, 0, old, b);
+	}
+
+	private void replace(int x, int y, byte old, byte into) {
+		if(data[x][y]!=old) return;
+		if(x>=10 || x<0) return;
+		if(y>=10 || y<0) return;
+		data[x][y] = into;
+		replace(x+1, y, old, into); // atas
+		replace(x-1, y, old, into); // bawah
+		replace(x, y+1, old, into); // kiri
+		relpace(x, y-1, old, into); // kanan
+	}
+}
+
+
+public class PlayBoard {
+	
+}
